@@ -1,30 +1,31 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
-import Mensaje from './Mensaje'
-
-const Mensaje = () => {
-  return <h1>Hola mundo</h1>
+const Mensaje = (props) => {
+  return (
+    <h2 style={{ color: props.color }}>
+      {props.message}
+    </h2>
+  )
 }
 
 const Description = () => {
   return <p>Esta es la app del curso fullstack bootcamp</p>
 }
+
 const App = () => {
-  const mensaje = 'Hola'
   const a = 2
   const b = 3
+
+  // Mensajes de depuración en consola:
+  console.log("full stack")
+  console.log("Suma de a + b:", a + b)
+
   return (
     <div className="App">
-      <Mensaje/>
-      <Mensaje/>
-      <Mensaje/>
-      <Description/>
-
+      <Mensaje color="red" message="Estamos trabajando" />
+      <Mensaje color="green" message="En un curso" />
+      <Mensaje color="yellow" message="De react" />
+      <Description />
     </div>
   )
 }
-5 + 3
+
 export default App
