@@ -1,62 +1,36 @@
-const Header = (props) => {
-  console.log("Props recibidas en Header:", props)     
-  return (
-    <h1>{props.course}</h1>
-  )   
-
-}
-
-const Part = (props) => {
-  return (
-    <p>
-      {props.part} {props.exercises}
-    </p>
-  )
-}
-
-const Content = (props) => {
-  return (
-    <div>
-      part part={props.part1} exercises={props.exercise1}
-      part part={props.part2} exercises={props.exercise2}
-      part part={props.part3} exercises={props.exercise3}
-
-    </div>
-  )
-
-}
-
-const Total = (props) => {
-  return (
-    <p>Number of exercises {props.total}</p>
-  )
-}
-
+import { useState } from 'react';
 
 const App = () => {
-const course = 'Half Stack application development'
-const part1 = 'Fundamentals of React';
-const exercises1 = 10;
-const part2 = 'Using props ot pass data';
-const exercises2 = 7;
-const part3 = 'State of a component';
-const exercises3 = 14;
+  //1. Estado
+  const [clicks, setClicks] = useState();
 
-  
-return (
-  <div>
+  //2. Manejar de eventos
+  const incrementar = () => setClicks(clicks + 1);
+  const decrementar = () => setClicks(clicks - 1);
+  const resetiar = () => setClicks(0);
 
-    <Header course={course} />
-    <Content
-      Part1={part1} exercise1={exercises1}
-      part2={part2} exercise2={exercises2}
-      part3={part3} exercise3={exercises3}
-    />
-    <Total total={exercises1 + exercises2 + exercises3} />
+  //3. Renderizado condicional
+  const esPar = clicks % 2 === 0;
 
-  </div> 
-)
+  return (
+    <div style={{ padding: '20px', fontFamily: 'sans-serif'}}>
 
+      <h1>Contador interactivo: {clicks}</h1>
+      
+      {/* Operador ternario*/}
+      <p>El numero es: <strong>{esPar ? 'Par ' : 'Impar' }</strong></p>
+
+      {/* Operaador && */}
+      {clicks === 0 && <p style={{ color: 'grey' }}>El contador esta en cero.</p>}
+      {clicks > 15 && <p style={{ color: 'orange' }}>Racha de mas de 15M clicks! XD</p>}
+
+      {/*Botones con onClick */}
+      <button onClick={decrementar}>-1</button>
+      <button onClick={resetiar} style={{margin: '0 8px'}}>Reset</button>
+      <button onClick={incrementar}>+1</button>
+    </div>
+
+  )
 }
 
 export default App
